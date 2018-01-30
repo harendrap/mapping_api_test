@@ -9,7 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /*
- * a simple domain entity doubling as a DTO
+ * @author Harendra
  */
 @Entity
 @Table(name = "mappings")
