@@ -104,8 +104,8 @@ public class MappingController2 extends AbstractRestHandler {
             method = RequestMethod.DELETE,
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Delete a mappingMaster resource.", notes = "You have to provide a valid mappingMaster ID in the URL. Once deleted the resource can not be recovered.")
-    public String deleteMappingDetail(@ApiParam(value = "The ID of the existing mappingMaster resource.", required = true)
+    @ApiOperation(value = "Delete a mappingchild resource.", notes = "You have to provide a valid child mapping ID in the URL. Once deleted the resource can not be recovered.")
+    public String deleteMappingDetail(@ApiParam(value = "The ID of the existing child resource.", required = true)
                                  @PathVariable("id") Long id, HttpServletRequest request,
                                  HttpServletResponse response) {
         checkResourceFound(this.mappingMasterService.getMappingDetail(id));

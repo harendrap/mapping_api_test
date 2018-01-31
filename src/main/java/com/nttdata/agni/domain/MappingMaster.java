@@ -1,24 +1,25 @@
 package com.nttdata.agni.domain;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /*
  * @author Harendra
  */
 @Entity
 @Table(name = "mapping_master")
-@Data @NoArgsConstructor @RequiredArgsConstructor
+@Data
+@NoArgsConstructor
 public class MappingMaster {
 
 

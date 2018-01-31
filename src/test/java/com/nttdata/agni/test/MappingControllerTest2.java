@@ -27,9 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import static org.hamcrest.Matchers.*;
@@ -73,10 +71,11 @@ public class MappingControllerTest2 {
     public void shouldCreateRetrieveDelete() throws Exception {
         MappingMaster r1 = mockMappingMaster("shouldCreateRetrieveDelete");
         byte[] r1Json = toJson(r1);
-
+        String json1="{\"mappingDetail\":[{\"hl7\":\"IN1.3\",\"fhir\":\"Patient\"},{\"hl7\":\"NTE.3\",\"fhir\":\"Patient.id\",\"name\":\"e2\"}]}";
+        System.out.println("ZZZZZZZZZZ:"+json1);
         //CREATE
         MvcResult result = mvc.perform(post(RESOURCE_LOCATION_BASEURL+"create")
-                .content(r1Json)
+                .content(json1.getBytes())
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -131,7 +130,7 @@ JSONAssert.assertEquals(
  */
     }
 
-    @Test
+    //@Test
     public void shouldCreateAndUpdateAndDelete() throws Exception {
         MappingMaster r1 = mockMappingMaster("shouldCreateAndUpdate");
         byte[] r1Json = toJson(r1);
@@ -193,12 +192,10 @@ JSONAssert.assertEquals(
 
     private MappingMaster mockMappingMaster(String prefix) {
         //MappingMaster r = new MappingMaster();
-        MappingMaster pm1 = new MappingMaster("shouldCreateRetrieveDelete");
-        if (prefix=="shouldCreateAndUpdate")
-        	pm1.setName("shouldCreateAndUpdate Master");
-        if (prefix=="shouldCreateAndUpdate2")
-        	pm1.setName("shouldCreateAndUpdate2 Master");
+        MappingMaster pm1 = new MappingMaster();
         
+        
+
         List<MappingDetail> pdList = new ArrayList<MappingDetail>();
         //MappingDetail pd1 =new MappingDetail("MappingDetail A1");
         pdList.add(new MappingDetail("Generic"," detail"));
@@ -208,11 +205,19 @@ JSONAssert.assertEquals(
         	pdList.add(new MappingDetail("shouldCreateAndUpdate2 ","detail"));
         
         pm1.setMappingDetail(pdList);
+        
+        if (prefix=="shouldCreateAndUpdate")
+        	pm1.setName("shouldCreateAndUpdate Master");
+        else if (prefix=="shouldCreateAndUpdate2")
+        	pm1.setName("shouldCreateAndUpdate2 Master");
+        else
+        	pm1.setName("shouldCreateRetrieveDelete");
         return pm1;
     }
 
     private byte[] toJson(Object r) throws Exception {
         ObjectMapper map = new ObjectMapper();
+        System.out.println("YY:"+map.writeValueAsString(r));
         return map.writeValueAsString(r).getBytes();
     }
 
