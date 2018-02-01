@@ -36,7 +36,7 @@ public class MappingDetail {
 
         
     String hl7Field;
-    
+    String staticValue;
     String fieldName;
 
     String fhirResource;
@@ -50,7 +50,7 @@ public class MappingDetail {
     Boolean isExtension;  
     
     String status;
-   
+    
  
 
     
