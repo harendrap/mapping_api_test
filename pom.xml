@@ -16,7 +16,7 @@
 	</parent> 	
 	<artifactId>Agni-core</artifactId>
 	<description>Agni Core classes</description>
-		
+		<version>1.0</version>
 	<properties>
 		<start-class>com.nttdata.agni.Application</start-class>
 	</properties>
@@ -150,6 +150,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<addResources>false</addResources>
+					<outputDirectory>.</outputDirectory>
 				</configuration>
 			</plugin>
 		</plugins>

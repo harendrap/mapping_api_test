@@ -130,7 +130,7 @@ JSONAssert.assertEquals(
  */
     }
 
-    //@Test
+    @Test
     public void shouldCreateAndUpdateAndDelete() throws Exception {
         MappingMaster r1 = mockMappingMaster("shouldCreateAndUpdate");
         byte[] r1Json = toJson(r1);
@@ -198,7 +198,9 @@ JSONAssert.assertEquals(
 
         List<MappingDetail> pdList = new ArrayList<MappingDetail>();
         //MappingDetail pd1 =new MappingDetail("MappingDetail A1");
-        pdList.add(new MappingDetail("Generic"," detail","a"));
+        MappingDetail mappingDetail1 =  new MappingDetail("Generic"," detail","a");
+        mappingDetail1.setStaticValue("stat");
+		pdList.add(mappingDetail1);
         if (prefix=="shouldCreateAndUpdate")
         	pdList.add(new MappingDetail("shouldCreateAndUpdate"," detail","b"));
         if (prefix=="shouldCreateAndUpdate2")
