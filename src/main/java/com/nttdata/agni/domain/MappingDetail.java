@@ -1,16 +1,11 @@
 package com.nttdata.agni.domain;
 
-import java.util.regex.Pattern;
-
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 /*
  * @author Harendra
@@ -21,9 +16,10 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 public class MappingDetail {
 
-	public MappingDetail( String fhir,String hl7) {
-        this.hl7 = hl7;
-        this.fhir = fhir;
+	public MappingDetail( String fieldName, String hl7Segment , String hl7Field) {
+        this.fieldName = fieldName;
+        this.hl7Segment = hl7Segment;
+        this.hl7Field = hl7Field;
                 
     }
 
@@ -39,13 +35,13 @@ public class MappingDetail {
     MappingMaster mappingMaster;
 
         
-    String hl7;
+    String hl7Field;
     
-    String fhir;
+    String fieldName;
 
     String fhirResource;
     
-    String hl7Seg;
+    String hl7Segment;
 
     String type;  
 

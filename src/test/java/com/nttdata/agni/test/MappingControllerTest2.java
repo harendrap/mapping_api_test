@@ -198,11 +198,11 @@ JSONAssert.assertEquals(
 
         List<MappingDetail> pdList = new ArrayList<MappingDetail>();
         //MappingDetail pd1 =new MappingDetail("MappingDetail A1");
-        pdList.add(new MappingDetail("Generic"," detail"));
+        pdList.add(new MappingDetail("Generic"," detail","a"));
         if (prefix=="shouldCreateAndUpdate")
-        	pdList.add(new MappingDetail("shouldCreateAndUpdate"," detail"));
+        	pdList.add(new MappingDetail("shouldCreateAndUpdate"," detail","b"));
         if (prefix=="shouldCreateAndUpdate2")
-        	pdList.add(new MappingDetail("shouldCreateAndUpdate2 ","detail"));
+        	pdList.add(new MappingDetail("shouldCreateAndUpdate2 ","detail","c"));
         
         pm1.setMappingDetail(pdList);
         
