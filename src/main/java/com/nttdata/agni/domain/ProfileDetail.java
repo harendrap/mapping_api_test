@@ -16,43 +16,45 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "profile_detail")
 @Data
-@NoArgsConstructor
+@NoArgsConstructor 
+@RequiredArgsConstructor
 public class ProfileDetail {
-
-    public ProfileDetail(String resource) {
-		// TODO Auto-generated constructor stub
-    	setResource(resource);
-    	
-	}
 
 	@Id
     @GeneratedValue()
     @Column(name="id")
     private long id;
 
-    //@NonNull
-    String resource;
     
-//    @NonNull
     @ManyToOne()
     @JoinColumn(name = "profile_master_id")
     @JsonBackReference
     ProfileMaster profileMaster;
+    
+    @NonNull
+    String resourceName;
 
-
- 
-
-    String field;
-
+    String fieldName;
+    
     String type;  
+    
+    int min;
+    
+    int max;
+    
+    String staticValue;
+    
+    String description;
 
     Boolean isRequired;  
+
+    Boolean isRepeating;  
+    
+    Boolean isExtension;  
     
     String status;
-   
- 
-
     
+    Boolean isActive; 
 }
 
 

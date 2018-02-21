@@ -21,7 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableAutoConfiguration  // Sprint Boot Auto Configuration
 @ComponentScan(basePackages = "com.nttdata.agni")
-@EnableJpaRepositories("com.nttdata.agni.dao.jpa") // To segregate MongoDB and JPA repositories. Otherwise not needed.
+@EnableJpaRepositories("com.nttdata.agni.dao.jpa") // To segregate JPA repositories. Otherwise not needed.
 public class Application extends SpringBootServletInitializer {
 
     private static final Class<Application> applicationClass = Application.class;

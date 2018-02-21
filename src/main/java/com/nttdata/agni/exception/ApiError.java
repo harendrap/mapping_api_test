@@ -11,18 +11,29 @@ import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * Copyright NTT Data
  * core
  * @author Harendra Pandey
  *
  */
+@Data @AllArgsConstructor
 public class ApiError {
 	 
     private HttpStatus status;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    private LocalDateTime timestamp;
     private String message;
+    //private String debugMessage;
     private List<String> errors;
- 
+    
+    private ApiError() {
+        timestamp = LocalDateTime.now();
+    }
     public ApiError(HttpStatus status, String message, List<String> errors) {
         super();
         this.status = status;
@@ -36,46 +47,19 @@ public class ApiError {
         this.message = message;
         errors = Arrays.asList(error);
     }
+  /*  
+    //new
+    ApiError(HttpStatus status, Throwable ex) {
+        this();
+        this.status = status;
+        this.message = "Unexpected error";
+        //this.debugMessage = ex.getLocalizedMessage();
+    }
 
-	/**
-	 * @return the status
-	 */
-	public HttpStatus getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(HttpStatus status) {
-		this.status = status;
-	}
-
-	/**
-	 * @return the message
-	 */
-	public String getMessage() {
-		return message;
-	}
-
-	/**
-	 * @param message the message to set
-	 */
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	/**
-	 * @return the errors
-	 */
-	public List<String> getErrors() {
-		return errors;
-	}
-
-	/**
-	 * @param errors the errors to set
-	 */
-	public void setErrors(List<String> errors) {
-		this.errors = errors;
-	}
+    ApiError(HttpStatus status, String message, Throwable ex) {
+        this();
+        this.status = status;
+        this.message = message;
+        //this.debugMessage = ex.getLocalizedMessage();
+    }*/
 }

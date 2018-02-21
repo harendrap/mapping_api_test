@@ -9,8 +9,7 @@ package com.nttdata.agni.exception;
  * @author Harendra Pandey
  *
  */
-import java.io.IOException;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,4 +105,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	      ex.getLocalizedMessage(), builder.toString());
 	    return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
 	}
+	@ExceptionHandler(EntityNotFoundException.class)
+	protected ResponseEntity<Object> handleEntityNotFound(
+	           EntityNotFoundException ex) {
+		ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, 
+			      ex.getLocalizedMessage(), "<Entity or Resource NotFound>");
+			    return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+	}
+	@ExceptionHandler(Exception.class)
+	protected ResponseEntity<Object> handleAll(
+	           Exception ex) {
+		ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, 
+			      ex.getLocalizedMessage(), "<GENERAL ERROR>");
+			    return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+	}
+	
 }

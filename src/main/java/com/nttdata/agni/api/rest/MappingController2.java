@@ -80,11 +80,24 @@ public class MappingController2 extends AbstractRestHandler {
                                  @PathVariable("id") Long id, @RequestBody MappingMaster mappingMaster,
                                  HttpServletRequest request, HttpServletResponse response) {
         checkResourceFound(this.mappingMasterService.getMappingMaster(id));
-        if (id != mappingMaster.getId()) throw new DataFormatException("ID doesn't match!");
+        //if (id != mappingMaster.getId()) throw new DataFormatException("ID doesn't match!");
         this.mappingMasterService.updateMappingMaster(mappingMaster);
         return "Update Sucessful";   
     }
-
+    @RequestMapping(value = "/update/{id}",
+            method = RequestMethod.POST,
+            consumes = {"application/json", "application/xml"},
+            produces = {"application/json", "application/xml"})
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Update a mappingMaster resource.", notes = "You have to provide a valid mappingMaster ID in the URL and in the payload. The ID attribute can not be updated.")
+    public String updateMappingMasterPost(@ApiParam(value = "The ID of the existing mappingMaster resource.", required = true)
+                                 @PathVariable("id") Long id, @RequestBody MappingMaster mappingMaster,
+                                 HttpServletRequest request, HttpServletResponse response) {
+        checkResourceFound(this.mappingMasterService.getMappingMaster(id));
+        //if (id != mappingMaster.getId()) throw new DataFormatException("ID doesn't match!");
+        this.mappingMasterService.createMappingMaster(mappingMaster);
+        return "Update Sucessful";   
+    }
     //todo: @ApiImplicitParams, @ApiResponses
     @RequestMapping(value = "/delete/{id}",
             method = RequestMethod.DELETE,

@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /*
  * @author Harendra
@@ -21,35 +22,40 @@ import lombok.RequiredArgsConstructor;
 @Data @NoArgsConstructor @RequiredArgsConstructor
 public class ProfileMaster {
 
-    
-
-
-	
-
-
 	@Id
     @GeneratedValue()
     private long id;
     
 	@NonNull
-    String profile;
-
+    String profileName;
  
     @OneToMany(mappedBy = "profileMaster", cascade = CascadeType.ALL,orphanRemoval=true, targetEntity=ProfileDetail.class)
     @Column(nullable = true)
     @JsonManagedReference
     List <ProfileDetail> profileDetail;
     
-
     String status;
     
+    Boolean isActive;
 
-    String resources;
-    
- 
- 
+    String description;
 
+    String additionalNotes;
     
+    String ownerName;
+    
+    String organization;
+    
+    String accessModifier;
+    
+    String locationUrl;
+    
+    String parentProfileName;
+    
+    @Transient
+    ProfileMaster parentProfile;
+
+
 }
 
 

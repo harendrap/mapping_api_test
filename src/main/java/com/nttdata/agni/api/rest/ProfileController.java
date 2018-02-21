@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @RestController
-@RequestMapping(value = "/fhirtranslator/v1/profile")
+@RequestMapping(value = "/fhirtranslator/v1/profile/")
 @Api(tags = {"profile"})
 public class ProfileController extends AbstractRestHandler {
 
@@ -113,23 +113,6 @@ public class ProfileController extends AbstractRestHandler {
         checkResourceFound(this.profileMasterService.getProfileDetail(id));
         this.profileMasterService.deleteProfileDetail(id);
          return "Delete Sucessful";      
-        /*
         
-        ProfileMaster profileMaster = this.profileMasterService.getProfileMaster(id);
-        CopyOnWriteArrayList<ProfileDetail> pdList = 
-        	    new CopyOnWriteArrayList<ProfileDetail>( profileMaster.getProfileDetail() );
-
-        	// (Car c : personCars) em.merge(c);
-        System.out.println("*size="+pdList.size());
-		//List<ProfileDetail> pdList = profileMaster.getProfileDetail();
-		for (ProfileDetail pd:pdList){
-			//if (pd.getId() == id2){
-				pdList.remove(pd);
-			//}
-		}
-		System.out.println("*size="+pdList.size());
-		profileMaster.setProfileDetail(pdList);
-		this.profileMasterService.updateProfileMaster(profileMaster);
-        */
     }
 }

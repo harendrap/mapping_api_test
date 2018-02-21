@@ -38,10 +38,22 @@ public class MappingMaster {
     
 
     String status;
-    
-
+ 
     String resources;
+ 
+    String mappingType; 
     
+    String messageType;
+    
+    String bundleType ;
+    
+    String referenceUrlOptions;
+    
+    String resourceCreationRules;
+    
+    String additionalNotes;
+    
+    String baseProfileTypeId;
  
     
 }

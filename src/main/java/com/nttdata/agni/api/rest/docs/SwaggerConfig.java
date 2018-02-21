@@ -38,10 +38,10 @@ public class SwaggerConfig {
                 .title("REST example")
                 .description(description)
                 .termsOfServiceUrl("github")
-                .license("Siamak")
+                .license("ntt data")
                 .licenseUrl("")
                 .version("1.0")
- //               .contact(new Contact("siamak"))
+
                 .build();
     }
 
