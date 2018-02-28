@@ -35,11 +35,12 @@ public class MappingController2 extends AbstractRestHandler {
             produces = {"application/json", "application/xml"})
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a mappingMaster resource.", notes = "Returns the URL of the new resource in the Location header.")
-    public void createMappingMaster(@RequestBody MappingMaster mappingMaster,
+    public Long createMappingMaster(@RequestBody MappingMaster mappingMaster,
                                  HttpServletRequest request, HttpServletResponse response) {
         MappingMaster createdMappingMaster = this.mappingMasterService.createMappingMaster(mappingMaster);
+        long url = createdMappingMaster.getId();        
         response.setHeader("Location", request.getRequestURL().append("/").append(createdMappingMaster.getId()).toString());
-    
+        return url;
     }
 
     @RequestMapping(value = "/getall",
@@ -73,7 +74,7 @@ public class MappingController2 extends AbstractRestHandler {
     @RequestMapping(value = "/update/{id}",
             method = RequestMethod.PUT,
             consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+            produces = {"text/plain"})
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Update a mappingMaster resource.", notes = "You have to provide a valid mappingMaster ID in the URL and in the payload. The ID attribute can not be updated.")
     public String updateMappingMaster(@ApiParam(value = "The ID of the existing mappingMaster resource.", required = true)
@@ -87,7 +88,7 @@ public class MappingController2 extends AbstractRestHandler {
     @RequestMapping(value = "/update/{id}",
             method = RequestMethod.POST,
             consumes = {"application/json", "application/xml"},
-            produces = {"application/json", "application/xml"})
+            produces = {"text/plain"})
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Update a mappingMaster resource.", notes = "You have to provide a valid mappingMaster ID in the URL and in the payload. The ID attribute can not be updated.")
     public String updateMappingMasterPost(@ApiParam(value = "The ID of the existing mappingMaster resource.", required = true)
@@ -101,7 +102,7 @@ public class MappingController2 extends AbstractRestHandler {
     //todo: @ApiImplicitParams, @ApiResponses
     @RequestMapping(value = "/delete/{id}",
             method = RequestMethod.DELETE,
-            produces = {"application/json", "application/xml"})
+            produces = {"text/plain"})
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Delete a mappingMaster resource.", notes = "You have to provide a valid mappingMaster ID in the URL. Once deleted the resource can not be recovered.")
     public String deleteMappingMaster(@ApiParam(value = "The ID of the existing mappingMaster resource.", required = true)
@@ -115,7 +116,7 @@ public class MappingController2 extends AbstractRestHandler {
     //delete child level mapping by id
     @RequestMapping(value = "/delete/detail/{id}",
             method = RequestMethod.DELETE,
-            produces = {"application/json", "application/xml"})
+            produces = {"text/plain"})
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Delete a mappingchild resource.", notes = "You have to provide a valid child mapping ID in the URL. Once deleted the resource can not be recovered.")
     public String deleteMappingDetail(@ApiParam(value = "The ID of the existing child resource.", required = true)

@@ -28,12 +28,7 @@ public class ProfileMaster {
     
 	@NonNull
     String profileName;
- 
-    @OneToMany(mappedBy = "profileMaster", cascade = CascadeType.ALL,orphanRemoval=true, targetEntity=ProfileDetail.class)
-    @Column(nullable = true)
-    @JsonManagedReference
-    List <ProfileDetail> profileDetail;
-    
+     
     String status;
     
     Boolean isActive;
@@ -51,6 +46,13 @@ public class ProfileMaster {
     String locationUrl;
     
     String parentProfileName;
+    
+    String IsBaseProfile;
+    
+    @OneToMany(mappedBy = "profileMaster", cascade = CascadeType.ALL,orphanRemoval=true, targetEntity=ProfileDetail.class)
+    @Column(nullable = true)
+    @JsonManagedReference
+    List <ProfileDetail> profileDetail;
     
     @Transient
     ProfileMaster parentProfile;
